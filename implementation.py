@@ -3,7 +3,7 @@ from CreateGraph import Vertex
 from CreateGraph import shortest_ 
 from Dijkstra import dijkstra
 if __name__ == '__main__':
-    g = Graph()
+    g = Graph.Graph()
     g.add_vertex('a')
     g.add_vertex('b')
     g.add_vertex('c')
@@ -20,12 +20,12 @@ if __name__ == '__main__':
 
     print("Graph: ")
     for v in g:
-        for w in v.get_connections():
+        for w in v.get_connection():
             vid = v.get_node()
             wid = w.get_node()
-            print(f"{vid},{wid},{v.get_weight(w)}")
-    Dijkstra(g,g.get_vertex('a'),g.get_vertex('e'))
+            print(f"({vid})--{v.get_weight(w)}-->({wid})",end="\n")
+    dijkstra(g,g.get_vertex('a'),g.get_vertex('d'))
     target = g.get_vertex('e')
     path = [target.get_node()]
-    shortest_(target,path)
+    shortest_.shortest(target,path)
     print("Shortest path: {}".format(path[::-1]))

@@ -1,12 +1,27 @@
 import sys
+from functools import total_ordering
+@total_ordering
 class Vertex():
     def __init__(self,node):
         self.node = node
         self.adjacent = {}
-        self.distance = sys.maxint
+        self.distance = sys.maxsize
         self.visited = False
         self.previous = None 
     
+    def __eq__(self,other):
+        if isinstance(other,self.__class__):
+            return self.distance == other.distance
+        return NotImplemented
+    
+    def __lt__(self,other):
+        if isinstance(other,self.__class__):
+            return True
+        return False
+    
+    def __hash__(self) -> dict:
+        return id(self)
+
     def add_neighbor(self,neighbor,weight = 0):
         self.adjacent[neighbor] = weight
 

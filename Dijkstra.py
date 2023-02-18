@@ -19,11 +19,11 @@ def dijkstra(agraph,start,target):
                 continue
             new_dist = current.get_distance() + current.get_weight(next)
             if new_dist < next.get_distance():
-                new_dist.set_distance(new_dist)
+                next.set_distance(new_dist)
                 next.set_previous(current)
-                print(f"Updated:Current = {current.get_node()} next = {next.get_node()} new distance = {next.get_distance()}")
+                print(f"**Updated:**\n{current.get_node()}---->{next.get_node()}\t new distance = {next.get_distance()}")
             else:
-                print(f"Not Updated: current = {current.get_node()} next = {next.get_node()} new distance = {next.get_distance()}")
+                print(f"--Not Updated:--\n{current.get_node()}---->{next.get_node()}\t new distance = {next.get_distance()}\t")
         while len(unvisited_queue):
             heapq.heappop(unvisited_queue)
         unvisited_queue = [(v.get_distance(),v) for v in agraph if not v.visited]
