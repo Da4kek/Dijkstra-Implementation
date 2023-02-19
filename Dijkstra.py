@@ -3,7 +3,7 @@ from CreateGraph import Vertex
 from CreateGraph import shortest_ 
 import heapq
 
-def dijkstra(agraph,start,target):
+def dijkstra(agraph,start):
     start.set_distance(0)
 
     unvisited_queue = [(v.get_distance(),v) for v in agraph]
